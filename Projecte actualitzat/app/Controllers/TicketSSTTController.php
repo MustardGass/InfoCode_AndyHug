@@ -70,6 +70,7 @@ class TicketSSTTController extends BaseController
             'name' => 'Tipus de dispositiu'
            ]
        ]);
+       $crud->addItemLink('view', 'fa-solid fa-eye text-success', base_url('pagina/veure/'), 'Veure ticket');
        $crud->addItemLink('edit', 'fa-solid fa-pen text-success', base_url('pagina/editar/'), 'Editar ticket');
        $crud->addItemLink('delete','fa-solid fa-trash text-danger', base_url('pagina/eliminar/'), 'Eliminar ticket');
        
@@ -237,5 +238,32 @@ class TicketSSTTController extends BaseController
         $tiquet_Model->editarTicket($id_ticket,$data);
          return redirect()->to("pagina/TicketSSTT");
      }
+
+
+     public function veure_ticket($id_ticket) {
+
+        if(!session()->get('isLogged')) {
+            return redirect()->to(base_url('login'));
+        }
+
+        $modelTiquet = new TiquetModel();
+        $modelCentre = new CentreModel();
+
+        $ticket = $modelTiquet->find($id_ticket);
+
+        $FK_centreEmissor = $ticket['idFK_codiCentre_emitent'];
+        $centre_e = $modelCentre->find($FK_centreEmissor);
+        $centre_emissorAuto = $centre_e['nom'];
+
+
+        $data['tiquet']=$ticket['id_tiquet'];
+        $data['centro']=$modelCentre->select('codi_centre, nom')->findAll();
+        $data['contable']=$modelCentre->contarDatos();
+        $data['codi_equip'] = (int)$ticket['codi_equip'];
+        $data['centre_emissorAuto']=$centre_emissorAuto;
+        $data['centre_reparadorAuto'] = $ticket['centre_reparador'];
+        $data['descripcio_avaria'] = $ticket['descripcio_avaria'];
+        return view("pages/veureTicket",$data);
+    }
 
 }

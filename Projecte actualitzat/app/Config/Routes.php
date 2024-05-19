@@ -30,6 +30,9 @@ $routes->get("/pagina/(:segment)/eliminar", 'TicketSSTTController::delete/$1');
 $routes->get('/pagina/editar/(:segment)', 'TicketSSTTController::editar_ticket/$1');
 $routes->post('/pagina/(:segment)/editar', 'TicketSSTTController::actualizar_ticket/$1');
 
+$routes->get('/pagina/veure/(:segment)', 'TicketSSTTController::veure_ticket/$1');
+
+
 //------------CRUD PROFESSOR-----------------------------
 $routes->get('/pagina/TicketProfessors', 'TicketProfessorsController::vista_ticket_profes');
 $routes->get('/pagina/panelProfessor', 'InformacioController::info_professor');
