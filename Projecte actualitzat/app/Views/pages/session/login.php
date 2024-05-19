@@ -43,6 +43,12 @@
                 <div class="col-md-6">
                     <h3 class="text-center mt-5">LOGIN</h3>
                     
+                    <?php if(isset($msg_error)) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= $msg_error ?>
+                        </div>
+                    <?php endif; ?>
+
                     <form action="<?=base_url('/login')?>" class="mt-5" method="POST">
                         <div class="input-group mb-3">
                             <label class="input-group-text" for="idioma">Idioma</label>

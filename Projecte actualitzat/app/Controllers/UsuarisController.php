@@ -81,6 +81,7 @@ class UsuarisController extends BaseController
         $modelLogin = new LoginModel();
         $modelUsersRols = new UsersRolsModel();
         $modelProfessor = new ProfessorModel();
+        $data = [];
 
         if($this->request->getPost()){
 
@@ -89,32 +90,40 @@ class UsuarisController extends BaseController
 
             $usuari_admin = $modelAdmin->obtindreAdmin($user);
 
-                if(!$usuari_admin){
-                    $usuari_profe = $modelLogin->obtindreProfessor($user);
-                    $rol = $modelUsersRols->obtindreRols($user);
-                    $info_profe = $modelProfessor->obtindreProfessor($user);
+            if($usuari_admin){
+                if($usuari_admin && password_verify($password, $usuari_admin['password'])){
+                    session()->set('isLogged', true);
+                    session()->set('user_id', $usuari_admin['id_admin']);
+                   
+                    return redirect()->to('/pagina/TicketSSTT');
+                } else {
+                    $data['msg_error'] = "Credencials incorrectes";
                 }
 
-            if($usuari_admin && password_verify($password, $usuari_admin['password'])){
-                session()->set('isLogged', true);
-                session()->set('user_id', $usuari_admin['id_admin']);
-               
-                return redirect()->to('/pagina/panelSSTT');
-            }elseif($usuari_profe && password_verify($password, $usuari_profe['password'])) {
-                session()->set('isLogged', true);
-                session()->set('user_id', $usuari_profe['idFK_user']);
-                session()->set('user_rol', $rol['idFK_rol']);
-                session()->set('user_nom', $info_profe['nom']);
-                session()->set('user_cognoms', $info_profe['cognoms']);
-                session()->set('user_correu', $info_profe['correu']);
-                session()->set('user_centre', $info_profe['idFK_codi_centre']);
+            }elseif(!$usuari_admin) {
+                $usuari_profe = $modelLogin->obtindreProfessor($user);
+                $rol = $modelUsersRols->obtindreRols($user);
+                $info_profe = $modelProfessor->obtindreProfessor($user);
 
-                return redirect()->to(base_url('/pagina/TicketProfessors'));
-            }else {
-                return redirect()->to('/login');
-            }   
+                if($usuari_profe && password_verify($password, $usuari_profe['password'])) {
+                    session()->set('isLogged', true);
+                    session()->set('user_id', $usuari_profe['idFK_user']);
+                    session()->set('user_rol', $rol['idFK_rol']);
+                    session()->set('user_nom', $info_profe['nom']);
+                    session()->set('user_cognoms', $info_profe['cognoms']);
+                    session()->set('user_correu', $info_profe['correu']);
+                    session()->set('user_centre', $info_profe['idFK_codi_centre']);
+    
+                    return redirect()->to(base_url('/pagina/TicketProfessors'));
+                } else {
+                    $data['msg_error'] = "Credencials incorrectes";
+                } 
+            } else {    //este else se deberia arreglar para el login de usuario alumno
+                $data['error'] = "Usuari i contrasenya incorrectes";
+            } 
+                  
         }
-        return view("pages/session/login");
+        return view("pages/session/login", $data);
     }
 
 
