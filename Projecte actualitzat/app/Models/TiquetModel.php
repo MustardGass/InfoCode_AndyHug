@@ -98,4 +98,7 @@ class TiquetModel extends Model
     public function editarTicket($id_ticket, $nou_ticket) {
         return $this->update($id_ticket, $nou_ticket);
     }
+
+
+
 }

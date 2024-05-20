@@ -123,91 +123,17 @@
           <div class="col py-3">
 
             <div class="mt-3 mb-5">
-              <h1><?= lang('TicketProfessors.titol_veureTicket'); ?></h1>
+              <h1><?= lang('TicketProfessors.titol_afegirIntervencio'); ?></h1>
             </div>
 
             <!-- Mostrar los datos del ticket -->
 
             <form>
 
-              <div class="container">
-                <div class="row">
-                  <div class="col">
-                    <label for="id_tiquet" class="form-label h5">ID del Tiquet</label>
-                    <input type="text" class="form-control" id="id_tiquet" value="<?= esc($id_tiquet) ?>" readonly />
-                  </div>
-                  <div class="col">
-                    <label for="codi_equip" class="form-label h5">Codi de l'equip</label>
-                    <input type="text" class="form-control" id="codi_equip" value="<?= esc($codi_equip) ?>" readonly />
-                  </div>
-                  <div class="col">
-                    <label for="idFK_dispositiu" class="form-label h5">ID Dispositiu</label>
-                    <input type="text" class="form-control" id="idFK_dispositiu" value="<?= esc($idFK_dispositiu) ?>"
-                      readonly />
-                  </div>
-
-                </div>
-                <br>
-                <div class="row">
-                  <div class="col">
-                    <label for="data_alta" class="form-label h5">Data d'Alta</label>
-                    <input type="text" class="form-control" id="data_alta" value="<?= esc($data_alta) ?>" readonly />
-                  </div>
-                  <div class="col">
-                    <label for="estat_tiquet" class="form-label h5">Estat del Tiquet</label>
-                    <input type="text" class="form-control" id="estat_tiquet" value="<?= esc($estat_tiquet) ?>"
-                      readonly />
-                  </div>
-                  <div class="col">
-                    <label for="idFK_idProfessor" class="form-label h5">ID Professor</label>
-                    <input type="text" class="form-control" id="idFK_idProfessor" value="<?= esc($idFK_idProfessor) ?>"
-                      readonly />
-                  </div>
-                </div>
-                <br>
-                <div class="row">
-                  <div class="col">
-                    <label for="centre_emitent" class="form-label h5">Centre Emitent</label>
-                    <input type="text" class="form-control" id="centre_emitent" value="<?= esc($centre_emitent) ?>"
-                      readonly />
-                  </div>
-                  <div class="col">
-                    <label for="centre_reparador" class="form-label h5">Centre Reparador</label>
-                    <input type="text" class="form-control" id="centre_reparador" value="<?= esc($centre_reparador) ?>"
-                      readonly />
-                  </div>
-                </div>
-                <br>
-                
-                
-                <div class="row">
-                  <div class="col">
-                    <label for="descripcio_avaria" class="form-label h5">Descripció de l'Avaria</label>
-                    <input type="text" class="form-control" id="descripcio_avaria"
-                      value="<?= esc($descripcio_avaria) ?>" readonly />
-                  </div>
-                  
-                  
-                </div>
-
-                
-                
-                <div class="row my-5">
-                  <div>
-                    <a href="<?= base_url("pagina/afegirIntervencio/{$id_tiquet}") ?>" class="btn btn-primary">+ Afegir intervenció</a>
-                  </div>
-                </div>
-              </div>
-
-            
+              
 
             </form>
             
-            <div class="mt-3 mb-5">
-              <h1>Intervencions</h1>
-            </div>
-
-            <!-- AQUI VA EL LLISTAT DE LES INTERVENCIONS -->
 
 
 

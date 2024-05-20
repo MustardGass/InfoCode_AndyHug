@@ -21,7 +21,9 @@
         'titol_afegirTicket' => 'Afegir tiquet',
         'titol_eliminarTicket' => 'Eliminar tiquet',
         'titol_editarTicket' => 'Editar Tiquet',
-        'titol_veureTicket' => 'Veure Tiquet'
+        'titol_veureTicket' => 'Veure Tiquet',
+        'titol_afegirIntervencio' => 'Afegir Intervencio'
+
 
     ]
 ?>

@@ -245,25 +245,110 @@ class TicketSSTTController extends BaseController
         if(!session()->get('isLogged')) {
             return redirect()->to(base_url('login'));
         }
-
+    
         $modelTiquet = new TiquetModel();
         $modelCentre = new CentreModel();
-
+        $modelTipusDispositiu = new TipusDispositiuModel(); // Asegúrate de cargar el modelo correspondiente
+    
         $ticket = $modelTiquet->find($id_ticket);
-
-        $FK_centreEmissor = $ticket['idFK_codiCentre_emitent'];
-        $centre_e = $modelCentre->find($FK_centreEmissor);
-        $centre_emissorAuto = $centre_e['nom'];
-
-
-        $data['tiquet']=$ticket['id_tiquet'];
-        $data['centro']=$modelCentre->select('codi_centre, nom')->findAll();
-        $data['contable']=$modelCentre->contarDatos();
-        $data['codi_equip'] = (int)$ticket['codi_equip'];
-        $data['centre_emissorAuto']=$centre_emissorAuto;
-        $data['centre_reparadorAuto'] = $ticket['centre_reparador'];
-        $data['descripcio_avaria'] = $ticket['descripcio_avaria'];
-        return view("pages/veureTicket",$data);
+    
+        if (!$ticket) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Tiquet no trobat: ' . $id_ticket);
+        }
+    
+        // Obtener el nombre del tipo de dispositivo
+        $dispositiu = $modelTipusDispositiu->find($ticket['idFK_dispositiu']);
+        $tipus_dispositiu = $dispositiu ? $dispositiu['tipus'] : 'Desconegut';
+    
+        $centreEmissor = $modelCentre->find($ticket['idFK_codiCentre_emitent']);
+        $centreReparador = $modelCentre->find($ticket['idFK_codiCentre_reparador']);
+    
+        $data = [
+            'id_tiquet' => $ticket['id_tiquet'],
+            'codi_equip' => $ticket['codi_equip'],
+            'descripcio_avaria' => $ticket['descripcio_avaria'],
+            'data_alta' => $ticket['data_alta'],
+            'estat_tiquet' => $ticket['estat_tiquet'],
+            'centre_emitent' => $centreEmissor['nom'] ?? 'Desconegut',
+            'centre_reparador' => $centreReparador['nom'] ?? 'Desconegut',
+            'idFK_dispositiu' => $tipus_dispositiu, // Cambiado el ID por el nombre del tipo de dispositivo
+            'idFK_idProfessor' => $ticket['idFK_idProfessor']
+        ];
+    
+        return view('pages/veureTicket', $data);
     }
+    
+    
+    public function afegir_intervencio() {
+
+        if(!session()->get('isLogged')) {
+            return redirect()->to(base_url('login'));
+        }
+
+        $fake = Factory::create("es_ES");
+
+        $data['titulo'] = "Afegir Intervencio";
+
+        $modelTiquet = new TiquetModel();
+        $modelDispositiu = new TipusDispositiuModel();
+        $modelCentre = new CentreModel();
+        $modelProfessor = new ProfessorModel();
+
+        $validationRules = [
+            'cod_equip' => 'required'
+        ];
+
+        $n_rand1 = $fake->randomNumber(8, true);
+        $n_rand2 = $fake->randomNumber(8, true);
+        $idTicket = $n_rand1 . $n_rand2;
+        
+        $data_alta = date("Y-m-d H:i:s");
+        $estat_tiquet = "Pendent";
+
+
+        if($this->validate($validationRules)) {
+            $codi_equip = $this->request->getPost('cod_equip');
+            $dispositiu = $this->request->getPost('t_dispositiu');
+            $descripcio_avaria = $this->request->getPost('descripcio');
+            $idFK_Centre_emissor = $this->request->getPost('c_emitent');
+            $idFK_centre_reparador = $this->request->getPost('c_reparador');
+            $professor = $this->request->getPost('professor');
+
+            $dispositiu_exists = $modelDispositiu->find($dispositiu);
+
+            //obtindre nom del centre raparador
+            //realitzar consulta per trobar el centre reparador amb la id proporcionada
+            $centre_reparador = $modelCentre->find($idFK_centre_reparador);                //  $centre_reparador -> conté totes les dades del centre trobat
+            $nom_centre_reparador = $centre_reparador['nom'];  //si se a trobat el centre, extraiem el nom de aquell centre
+
+
+            if($dispositiu_exists){
+                $modelTiquet->afegirTicket($idTicket, $codi_equip, $dispositiu, $descripcio_avaria, $data_alta, $estat_tiquet, $idFK_Centre_emissor, $idFK_centre_reparador, $professor, $nom_centre_reparador);
+                return redirect()->to("pagina/TicketSSTT");
+            } else {
+                echo "Dispositivo seleccionado no existe";
+            }
+        }
+
+        $data['tipus_dispositiu'] = $modelDispositiu->findAll();
+        $data['centre_emitent'] = $modelCentre->select('codi_centre, nom')->findAll();
+        $data['centre_reparador'] = $modelCentre->select('codi_centre, nom')->findAll();
+        $data['professor'] = $modelProfessor->findAll();
+
+        return view("pages/afegir", $data);
+    }
+
+
+    public function afegirIntervencio($id_tiquet) {
+        if (!session()->get('isLogged')) {
+            return redirect()->to(base_url('login'));
+        }
+    
+        $data['id_tiquet'] = $id_tiquet;
+    
+        return view('pages/afegirIntervencio', $data); 
+    }
+    
+    
 
 }
