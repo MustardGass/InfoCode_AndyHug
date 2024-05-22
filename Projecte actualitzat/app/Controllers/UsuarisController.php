@@ -78,6 +78,8 @@ class UsuarisController extends BaseController
 
         $modelAlumnes = new AlumnesModel();
         $modelLogin = new LoginModel();
+        $modelRols = new RolsModel();
+        $model_UsersRols = new UsersRolsModel();
         
         if($this->request->getMethod() === 'POST'){
             $data = [
@@ -95,6 +97,16 @@ class UsuarisController extends BaseController
             // ];
 
             // $modelLogin->registroUser($data);
+
+            // $rolProfe = $modelRols->where('tipus_rol', 'professor')->first();
+            // $id_rol = $rolProfe['id_rol'];
+
+            // $data = [
+            //     'idFK_user' => $this->request->getPost('correu_xtec'),
+            //     'idFK_rol' => $id_rol
+            // ];
+
+            // $model_UsersRols->addUserRols($data);
 
             return redirect()->to(base_url('pagina/TicketProfessors'));
         }
