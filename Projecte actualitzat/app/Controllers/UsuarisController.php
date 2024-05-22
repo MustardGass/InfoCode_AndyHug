@@ -74,6 +74,36 @@ class UsuarisController extends BaseController
         return view("pagines/registre", $data);
     }
 
+    public function registre_alumne() {
+
+        $modelAlumnes = new AlumnesModel();
+        $modelLogin = new LoginModel();
+        
+        if($this->request->getMethod() === 'POST'){
+            $data = [
+                'correu_alumne' => $this->request->getPost('correu'),
+                'idFK_codi_centre' => session()->get('user_centre')
+            ];
+
+            $modelAlumnes->registrarAlumne($data);
+
+            // $pass_hash = password_hash($this->request->getPost('contrasenya'), PASSWORD_DEFAULT);
+            
+            // $data = [
+            //     'idFK_user' => $this->request->getPost('correu_xtec'),
+            //     'password' => $pass_hash
+            // ];
+
+            // $modelLogin->registroUser($data);
+
+            return redirect()->to(base_url('pagina/TicketProfessors'));
+        }
+        
+
+
+        return view('pages/alumnes/registreAlumnes');
+    }
+
     public function login() {
         
         //Instanciar els models

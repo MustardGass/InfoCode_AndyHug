@@ -115,6 +115,10 @@
                   <a class="nav-link text-white" href="#"> <img src=<?= base_url('img/iconInventari.png'); ?> alt="Logo"
                       style="max-height: 30px;"><?= lang('TicketProfessors.inventari_menu'); ?></a>
                 </li>
+
+                <li class="nav-item mt-3">
+                  <a class="nav-link text-white" href="<?= base_url('pagina/registreAlumne') ?>">Registre Alumne</a>
+                </li>
               </ul>
             </div>
           </div>
