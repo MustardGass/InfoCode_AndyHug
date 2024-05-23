@@ -222,6 +222,7 @@ class TicketSSTTController extends BaseController
         $centre_emissor=$this->request->getPost('codiCentreEmissor');
         $centre_reparador=$this->request->getPost('nom_centre_reparador');
         $codiCentreReparador=$this->request->getPost('codiCentreReparador');
+
         $data=[
             'codi_equip'=>$codi_equip,
             'descripcio_avaria'=>$descripcion_avaria,

@@ -10,7 +10,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"> </script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-  
+
   <link rel="stylesheet" href="<?= base_url("css/style.css") ?>">
   <title>Editar</title>
 
@@ -72,7 +72,7 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active text-white" aria-current="page"
-            href="<?= base_url('/pagina/TicketSSTT'); ?>"><?= lang('TicketProfessors.sstt_header'); ?></a>
+              href="<?= base_url('/pagina/TicketSSTT'); ?>"><?= lang('TicketProfessors.sstt_header'); ?></a>
           </li>
         </ul>
         <div class="d-flex">
@@ -106,7 +106,8 @@
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
               <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start ms-0 text-start" id="menu">
                 <li class="nav-item mt-3">
-                  <a class="nav-link text-white" href="<?= base_url('/pagina/TicketSSTT'); ?>"> <img src=<?= base_url('img/iconMenuRosca.png'); ?> alt="Logo"
+                  <a class="nav-link text-white" href="<?= base_url('/pagina/TicketSSTT'); ?>"> <img
+                      src=<?= base_url('img/iconMenuRosca.png'); ?> alt="Logo"
                       style="max-height: 30px;"><?= lang('TicketProfessors.reparacions_menu'); ?></a>
                 </li>
 
@@ -122,100 +123,131 @@
           <div class="col py-3">
 
             <div class="mt-3 mb-5">
-              <h1><?= lang('TicketProfessors.titol_editarTicket');?></h1>
+              <h1><?= lang('TicketProfessors.titol_editarTicket'); ?></h1>
             </div>
 
             <!-- Mostrar los datos del ticket -->
- 
-            <form action="<?= base_url("pagina/".$tiquet."/editar"); ?>" method="POST">
-            <h3>ID ticket</h3>
-            <p><?= $tiquet ?></p>
-            <h3>codi d'equip</h3>
-            <input type="text"  name="codigo_equipo" value="<?= $codi_equip ?>">
-            <h3>Descripcio_avaria</h3>
-            <textarea name="descripcion_avaria" id="descripcion_avaria" rows="5" cols="50"><?= $descripcio_avaria ?></textarea><br>
+
+            <form action="<?= base_url("pagina/" . $tiquet . "/editar"); ?>" method="POST">
             
-            <h3>Centre emissor</h3>
-            <?php foreach($centro as $index => $centre) : ?>
-              <input type="hidden" value="<?= $centre['nom'] ?>" id="nom<?= $index ?>">
-              <input type="hidden" value="<?= $centre['codi_centre'] ?>" id="codi<?= $index ?>">
-             <?php endforeach; ?>
-            <input type="text" id="inputBuscar"  oninput="buscar('<?= $contable?>')" value="<?= $centre_emissorAuto ?>"> 
-            <div id="coincidencias" style="display: none;"></div> 
-            <h3>Centre Reparador</h3>
-            <input type="text" id="inputBuscar2" name="nom_centre_reparador"  oninput="buscar2('<?= $contable?>')" value="<?= $centre_reparadorAuto ?>"> 
-            <input type="hidden" id="inputCodi" name="codiCentreEmissor" >
-            <input type="hidden" id="inputCodi2" name="codiCentreReparador" >
-            <div id="coincidencias2" style="display: none;"></div> 
-            <script>
-            function buscar(contable) {
-            var texto=document.getElementById("inputBuscar").value.replace(/\b\w/g, function(match) {
-            return match.toUpperCase();
-            });
-            var coincidenciasEncontradas = 0;
-            var divCoincidencias = document.getElementById("coincidencias");
-            divCoincidencias.innerHTML = ""; 
-            if (texto !== "") {
-            for (var i = 0; i < contable && coincidenciasEncontradas < 8; i++) {
-            var nombre = document.getElementById("nom" + i).value;
-            var codigo = document.getElementById("codi" + i).value;
-            if (nombre.includes(texto)) {
-                var coincidenciaElemento = document.createElement("div");
-                coincidenciaElemento.textContent = nombre;
-                coincidenciaElemento.codigo=codigo;
-                document.getElementById("inputCodi").value = codigo;
-                divCoincidencias.appendChild(coincidenciaElemento);
-                coincidenciasEncontradas++;
-                coincidenciaElemento.addEventListener("click", function() {
-                document.getElementById("inputCodi").value = this.codigo;
-                document.getElementById("inputBuscar").value = this.textContent;
-                divCoincidencias.style.display = "none";
-                    });
+            <div class="container">
+              <div class="row my-3">
+                  <div class="col">
+                    <label class="form-label h5">ID tiquet</label><br>
+                    <p class="form-control"><?= $tiquet ?></p>
+                  </div>
+
+                  <div class="col">
+                    <label class="form-label h5">Codi equip</label><br>
+                    <input type="text" name="codigo_equipo" class="form-control" value="<?= $codi_equip ?>">
+                  </div>
+
+                  
+                </div>
+
+              <div class="row my-3">
+                <div class="col">
+
+                  <label class="form-label h5">Centre emissor</label><br>
+                  <?php foreach ($centro as $index => $centre): ?>
+                    <input type="hidden" value="<?= $centre['nom'] ?>" id="nom<?= $index ?>">
+                    <input type="hidden" value="<?= $centre['codi_centre'] ?>" id="codi<?= $index ?>">
+                  <?php endforeach; ?>
+                  <input type="text" id="inputBuscar" class="form-control" oninput="buscar('<?= $contable ?>')"value="<?= $centre_emissorAuto ?>">
+                  <div id="coincidencias" style="display: none;"></div><br>
+
+                </div>
+
+                <div class="col">
+                  <label class="form-label h5">Centre Reparador</label><br>
+                  <input type="text" id="inputBuscar2" name="nom_centre_reparador" class="form-control" oninput="buscar2('<?= $contable ?>')"value="<?= $centre_reparadorAuto ?>">
+                  <input type="hidden" id="inputCodi" name="codiCentreEmissor">
+                  <input type="hidden" id="inputCodi2" name="codiCentreReparador">
+                  <div id="coincidencias2" style="display: none;"></div>
+                </div>
+
+              </div>
+
+              <div class="row my-3">
+                <div class="col">
+                  <label class="form-label h5">Descripcio_avaria</label><br>
+                    <textarea name="descripcion_avaria" id="descripcion_avaria" class="form-control" rows="4"><?= $descripcio_avaria ?></textarea><br>
+                </div>
+              </div>
+
+              
+                <button type="submit" class="btn btn-primary px-3">Editar Ticket</button>
+              
+            </div>
+
+              <script>
+                function buscar(contable) {
+                  var texto = document.getElementById("inputBuscar").value.replace(/\b\w/g, function (match) {
+                    return match.toUpperCase();
+                  });
+                  var coincidenciasEncontradas = 0;
+                  var divCoincidencias = document.getElementById("coincidencias");
+                  divCoincidencias.innerHTML = "";
+                  if (texto !== "") {
+                    for (var i = 0; i < contable && coincidenciasEncontradas < 8; i++) {
+                      var nombre = document.getElementById("nom" + i).value;
+                      var codigo = document.getElementById("codi" + i).value;
+                      if (nombre.includes(texto)) {
+                        var coincidenciaElemento = document.createElement("div");
+                        coincidenciaElemento.textContent = nombre;
+                        coincidenciaElemento.codigo = codigo;
+                        document.getElementById("inputCodi").value = codigo;
+                        divCoincidencias.appendChild(coincidenciaElemento);
+                        coincidenciasEncontradas++;
+                        coincidenciaElemento.addEventListener("click", function () {
+                          document.getElementById("inputCodi").value = this.codigo;
+                          document.getElementById("inputBuscar").value = this.textContent;
+                          divCoincidencias.style.display = "none";
+                        });
+                      }
+                    }
+                    if (coincidenciasEncontradas === 0) {
+                      divCoincidencias.innerHTML = "<div>No se encontraron coincidencias.</div>";
+                    }
+                    divCoincidencias.style.display = "block";
+                  } else {
+                    divCoincidencias.style.display = "none";
                   }
                 }
-                if (coincidenciasEncontradas === 0) {
-                divCoincidencias.innerHTML = "<div>No se encontraron coincidencias.</div>";
-            }
-                divCoincidencias.style.display = "block";
-                } else {
-                divCoincidencias.style.display = "none";
-                }
-            }       
-            function buscar2(contable) {
-            var texto=document.getElementById("inputBuscar2").value.replace(/\b\w/g, function(match) {
-            return match.toUpperCase();
-            });
-            var coincidenciasEncontradas = 0;
-            var divCoincidencias = document.getElementById("coincidencias2");
-            divCoincidencias.innerHTML = ""; 
-            if (texto !== "") {
-            for (var i = 0; i < contable && coincidenciasEncontradas < 8; i++) {
-            var nombre = document.getElementById("nom" + i).value;
-            var codigo = document.getElementById("codi" + i).value;
-            if (nombre.includes(texto)) {
-                var coincidenciaElemento = document.createElement("div");
-                coincidenciaElemento.textContent = nombre;
-                coincidenciaElemento.codigo=codigo;
-                document.getElementById("inputCodi2").value = codigo;
-                divCoincidencias.appendChild(coincidenciaElemento);
-                coincidenciasEncontradas++;
-                coincidenciaElemento.addEventListener("click", function() {
-                document.getElementById("inputCodi2").value = this.codigo;
-                document.getElementById("inputBuscar2").value = this.textContent;
-                divCoincidencias.style.display = "none";
-                    });
+                function buscar2(contable) {
+                  var texto = document.getElementById("inputBuscar2").value.replace(/\b\w/g, function (match) {
+                    return match.toUpperCase();
+                  });
+                  var coincidenciasEncontradas = 0;
+                  var divCoincidencias = document.getElementById("coincidencias2");
+                  divCoincidencias.innerHTML = "";
+                  if (texto !== "") {
+                    for (var i = 0; i < contable && coincidenciasEncontradas < 8; i++) {
+                      var nombre = document.getElementById("nom" + i).value;
+                      var codigo = document.getElementById("codi" + i).value;
+                      if (nombre.includes(texto)) {
+                        var coincidenciaElemento = document.createElement("div");
+                        coincidenciaElemento.textContent = nombre;
+                        coincidenciaElemento.codigo = codigo;
+                        document.getElementById("inputCodi2").value = codigo;
+                        divCoincidencias.appendChild(coincidenciaElemento);
+                        coincidenciasEncontradas++;
+                        coincidenciaElemento.addEventListener("click", function () {
+                          document.getElementById("inputCodi2").value = this.codigo;
+                          document.getElementById("inputBuscar2").value = this.textContent;
+                          divCoincidencias.style.display = "none";
+                        });
+                      }
+                    }
+                    if (coincidenciasEncontradas === 0) {
+                      divCoincidencias.innerHTML = "<div>No se encontraron coincidencias.</div>";
+                    }
+                    divCoincidencias.style.display = "block";
+                  } else {
+                    divCoincidencias.style.display = "none";
                   }
-                }
-                if (coincidenciasEncontradas === 0) {
-                divCoincidencias.innerHTML = "<div>No se encontraron coincidencias.</div>";
-            }
-                divCoincidencias.style.display = "block";
-                } else {
-                divCoincidencias.style.display = "none";
-                }
-            }         
-            </script>
-            <button>Editar  Ticket</button>
+                }         
+              </script>
             </form>
 
 
@@ -224,7 +256,7 @@
 
 
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
 </body>
 
 </html>

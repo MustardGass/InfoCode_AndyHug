@@ -121,12 +121,12 @@
               <h1><?= lang('TicketProfessors.titol_reparacions');?></h1>
             </div>
 
+          
             <div>
               <a href="<?= base_url("pagina/afegirTicket") ?>" class="btn btn-primary">+ Afegir</a>
             </div>
 
             <div>
-
               <?= $table ?>
             </div>
 
