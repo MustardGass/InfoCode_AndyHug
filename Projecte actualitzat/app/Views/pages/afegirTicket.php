@@ -128,6 +128,30 @@
             <div class="container">
               
             <div class="row">
+              
+              <div class="col">
+                <label for="c_emitent" class="form-label h5 ">Centre Emisor</label><br>
+                <select name="c_emitent" id="c_emitent" class="form-select">
+                    <?php foreach($centre_emitent as $centre_e) : ?>
+                        <option value="<?= $centre_e['codi_centre'] ?>"><?= $centre_e['nom'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+              </div>
+
+              <div class="col">
+                <label for="c_reparador" class="form-label h5 ">Centre Reparador</label><br>
+                <select name="c_reparador" id="c_reparador" class="form-select">
+                  
+                    <?php foreach($centre_reparador as $centre_r) : ?>
+                        <option value="<?= $centre_r['codi_centre'] ?>"><?= $centre_r['nom'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+              </div>
+            </div>
+            
+            <br>
+
+            <div class="row">
               <div class="col">
                   <label for="cod_equip" class="form-label h5 ">Codi de l'equip</label><br>
                   <input type="text" class="form-control" name="cod_equip"id="cod_equip" />
@@ -150,31 +174,7 @@
                 </select>
               </div>
             </div>
-              
-            <br>
-
-            <div class="row">
-              
-              <div class="col">
-                <label for="c_emitent" class="form-label h5 ">Centre Emisor</label><br>
-                <select name="c_emitent" id="c_emitent" class="form-select">
-                    <?php foreach($centre_emitent as $centre_e) : ?>
-                        <option value="<?= $centre_e['codi_centre'] ?>"><?= $centre_e['nom'] ?></option>
-                    <?php endforeach; ?>
-                </select>
-              </div>
-
-              <div class="col">
-                <label for="c_reparador" class="form-label h5 ">Centre Reparador</label><br>
-                <select name="c_reparador" id="c_reparador" class="form-select">
-                  
-                    <?php foreach($centre_reparador as $centre_r) : ?>
-                        <option value="<?= $centre_r['codi_centre'] ?>"><?= $centre_r['nom'] ?></option>
-                    <?php endforeach; ?>
-                </select>
-              </div>
-            </div>
-                
+          
               <br>
 
                <div>

@@ -152,6 +152,10 @@
             <a href="<?= base_url("pagina/") ?>"></a>
           </div>
 
+          <div>
+            <a href="<?= base_url("pagina/afegirTicket") ?>" class="btn btn-primary">+ Afegir</a>
+          </div>
+
             <div>
 
               <?= $table ?>
