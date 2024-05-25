@@ -61,7 +61,7 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light headerColor ">
+<nav class="navbar navbar-expand-lg navbar-light headerColor ">
     <div class="container-fluid">
       <a> <img src=<?= base_url('img/logo.png'); ?> alt="Logo" style="max-height: 50px;"> </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -80,15 +80,14 @@
             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
               data-bs-toggle="dropdown" aria-expanded="false">
               <img src=<?= base_url('img/user.png'); ?> alt="User" style="max-height: 30px;">
-              <?= lang('TicketProfessors.usuari'); ?>
+              <?= session()->get('user_id') ?>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#"><?= lang('TicketProfessors.opt1'); ?></a></li>
-              <li><a class="dropdown-item" href="#"><?= lang('TicketProfessors.opt2'); ?></a></li>
+              <li><a class="dropdown-item" href="<?= base_url("/pagina/panelSSTT") ?>"><?= lang('TicketProfessors.opt1'); ?></a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="#"><?= lang('TicketProfessors.desconnectar'); ?></a></li>
+              <li><a class="dropdown-item" href="<?= base_url("logout") ?>"><?= lang('TicketProfessors.desconnectar'); ?></a></li>
             </ul>
           </li>
         </div>
@@ -125,7 +124,8 @@
             <div class="mt-3 mb-5">
               <h1><?= lang('TicketProfessors.titol_veureTicket'); ?></h1>
             </div>
-
+            
+            
             <!-- Mostrar los datos del ticket -->
 
             <form>
@@ -191,12 +191,20 @@
                 </div>
 
                 
+                <?php
+                  if(session()->get('user_id') != "admin"){
+                    echo '
+                    <div class="row my-5">
+                        <div>
+                            <a href="' . base_url("pagina/afegirIntervencio/{$id_tiquet}") . '" class="btn btn-primary">+ Afegir intervenció</a>
+                        </div>
+                    </div>
+                    ';
+                }
+                ?>
                 
-                <div class="row my-5">
-                  <div>
-                    <a href="<?= base_url("pagina/afegirIntervencio/{$id_tiquet}") ?>" class="btn btn-primary">+ Afegir intervenció</a>
-                  </div>
-                </div>
+
+
               </div>
 
             

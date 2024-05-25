@@ -126,12 +126,34 @@
               <h1><?= lang('TicketProfessors.titol_afegirIntervencio'); ?></h1>
             </div>
 
-            <!-- Mostrar los datos del ticket -->
+            <!-- Formulari per a les intervencions -->
 
             <form>
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                      <label for="descripcio" class="form-label h5 ">Acció realitzada</label><br>
+                      <textarea class="form-control" rows="4"  type="text" name="descripcio" id="descripcio"></textarea>
+                  </div>  
+                </div>
 
-              
 
+                <div class="row">
+                  <div class="col">
+                      <label for="professor" class="form-label h5">Professor responsable</label><br>
+                      <select name="professor" id="professor" class="form-select">
+                          <?php foreach($professor as $profe): ?>
+                              <option value="<?=($profe['id_xtec']) ?>"></option>
+                          <?php endforeach; ?>
+                      </select>
+                  </div> 
+
+                    <div class="col">
+                        <label for="alumne" class="form-label h5 ">Alumne participant</label><br>
+                        <textarea class="form-control" rows="4"  type="text" name="alumne" id="alumne"></textarea>
+                    </div>  
+                </div>
+              </div>
             </form>
             
 

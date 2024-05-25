@@ -340,15 +340,7 @@ class TicketSSTTController extends BaseController
     }
 
 
-    public function afegirIntervencio($id_tiquet) {
-        if (!session()->get('isLogged')) {
-            return redirect()->to(base_url('login'));
-        }
     
-        $data['id_tiquet'] = $id_tiquet;
-    
-        return view('pages/afegirIntervencio', $data); 
-    }
     
     
 

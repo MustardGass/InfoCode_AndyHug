@@ -32,9 +32,7 @@ $routes->post('/pagina/(:segment)/editar', 'TicketSSTTController::actualizar_tic
 
 $routes->get('/pagina/veure/(:segment)', 'TicketSSTTController::veure_ticket/$1');
 
-$routes->get('/pagina/afegirIntervencio', 'TicketSSTTController::afegirIntervencio');
 
-$routes->get('/pagina/afegirIntervencio/(:segment)', 'TicketSSTTController::afegirIntervencio/$1');
 
 //------------CRUD PROFESSOR-----------------------------
 $routes->get('/pagina/TicketProfessors', 'TicketProfessorsController::vista_ticket_profes');
@@ -45,4 +43,7 @@ $routes->post('/pagina/registreAlumne', 'UsuarisController::registre_alumne');
 
 $routes->get('/pagina/TicketAlumnes', 'TicketAlumnesController::vista_layout');
 $routes->get('/pagina/alumnes', 'UsuarisController:: alumnes');
+
+$routes->get('/pagina/afegirIntervencio/(:segment)', 'TicketProfessorsController::afegirIntervencio/$1');
+
 

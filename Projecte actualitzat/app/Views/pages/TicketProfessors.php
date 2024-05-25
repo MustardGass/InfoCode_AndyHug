@@ -63,7 +63,7 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light headerColor ">
+<nav class="navbar navbar-expand-lg navbar-light headerColor ">
     <div class="container-fluid">
       <a> <img src=<?= base_url('img/logo.png'); ?> alt="Logo" style="max-height: 50px;"> </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -74,7 +74,7 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active text-white" aria-current="page"
-              href="#"><?= lang('TicketProfessors.sstt_header'); ?></a>
+              href="<?= base_url('/pagina/TicketSSTT'); ?>"><?= lang('TicketProfessors.sstt_header'); ?></a>
           </li>
         </ul>
         <div class="d-flex">
@@ -85,11 +85,11 @@
               <?= session()->get('user_id') ?>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="<?= base_url('/pagina/panelProfessor') ?>"><?= lang('TicketProfessors.opt1') ?></a></li>
+              <li><a class="dropdown-item" href="<?= base_url("/pagina/panelSSTT") ?>"><?= lang('TicketProfessors.opt1'); ?></a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="<?= base_url('logout') ?>"><?= lang('TicketProfessors.desconnectar'); ?></a></li>
+              <li><a class="dropdown-item" href="<?= base_url("logout") ?>"><?= lang('TicketProfessors.desconnectar'); ?></a></li>
             </ul>
           </li>
         </div>
@@ -117,7 +117,7 @@
                 </li>
 
                 <li class="nav-item mt-3">
-                  <a class="nav-link text-white" href="<?= base_url('pagina/registreAlumne') ?>">Registre Alumne</a>
+                  <a class="nav-link text-white" href="<?= base_url('pagina/registreAlumne') ?>"> <i class="fa-solid fa-users"></i> Registrar alumnes</a>
                 </li>
               </ul>
             </div>

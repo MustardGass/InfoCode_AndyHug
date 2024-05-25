@@ -59,12 +59,32 @@ class TicketProfessorsController extends BaseController
             ]
         ]);
 
+        $crud->addItemLink('view', 'fa-solid fa-eye text-success', base_url('pagina/veure/'), 'Veure ticket');
+
+
         // Generar la taula KpaCrud
         $data['table'] = $crud->render();
 
         // Passar dades a la vista
         return view('pages/TicketProfessors', $data);
 
+    }
+
+
+    public function afegirIntervencio($id_tiquet)
+    {
+        if (!session()->get('isLogged')) {
+            return redirect()->to(base_url('login'));
+        }
+
+        $modelProfessor = new ProfessorModel();
+
+        $data['id_tiquet'] = $id_tiquet;
+
+        $data['professor'] = $modelProfessor->findAll();
+        
+
+        return view('pages/afegirIntervencio', $data);
     }
 
 }
