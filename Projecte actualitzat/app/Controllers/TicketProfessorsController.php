@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\ProfessorModel;
 use App\Models\TipusDispositiuModel;
 use App\Models\TiquetModel;
 use SIENSIS\KpaCrud\Libraries\KpaCrud;

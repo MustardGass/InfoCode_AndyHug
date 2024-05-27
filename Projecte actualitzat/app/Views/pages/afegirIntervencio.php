@@ -143,7 +143,7 @@
                       <label for="professor" class="form-label h5">Professor responsable</label><br>
                       <select name="professor" id="professor" class="form-select">
                           <?php foreach($professor as $profe): ?>
-                              <option value="<?=($profe['id_xtec']) ?>"></option>
+                              <option value="<?=$profe['id_xtec'] ?>"><?= $profe['id_xtec'] ?></option>
                           <?php endforeach; ?>
                       </select>
                   </div> 
