@@ -65,4 +65,20 @@ class IntervencioModel extends Model
 
         return $result[$intervencio_random]->id_intervencio;
     }
+
+
+    public function afegirIntervencio($id_tiquet, $descripcion_avaria, $codi_equip, $profe_reparador, $alumne_reparador, $data_intervencio, $id_intervencio){
+        $this->insert([
+            'id_intervencio' => $id_intervencio,
+            'descripcio' => $descripcion_avaria,
+            'data_intervencio' => $data_intervencio,
+            'idFk_tiquet' => $id_tiquet,
+            'idFK_alumne' => $alumne_reparador,
+            'idFK_professor' => $profe_reparador
+        ]);
+    }
+    
 }
+
+
+

@@ -106,7 +106,7 @@
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
               <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start ms-0 text-start" id="menu">
                 <li class="nav-item mt-3">
-                  <a class="nav-link text-white" href="<?= base_url('/pagina/TicketSSTT'); ?>"> <img
+                  <a class="nav-link text-white" href="<?= base_url('/pagina/TicketProfessors'); ?>"> <img
                       src=<?= base_url('img/iconMenuRosca.png'); ?> alt="Logo"
                       style="max-height: 30px;"><?= lang('TicketProfessors.reparacions_menu'); ?></a>
                 </li>
@@ -128,9 +128,9 @@
 
             <!-- Formulari per a les intervencions -->
 
-            <form>
+            <form action="<?= base_url('/pagina/afegirIntervencio/' . $id_tiquet) ?>" method="post">
               <div class="container">
-                <div class="row">
+                <div class="row my-5">
                   <div class="col">
                       <label for="descripcio" class="form-label h5 ">Acció realitzada</label><br>
                       <textarea class="form-control" rows="4"  type="text" name="descripcio" id="descripcio"></textarea>
@@ -138,7 +138,7 @@
                 </div>
 
 
-                <div class="row">
+                <div class="row my-5">
                   <div class="col">
                       <label for="professor" class="form-label h5">Professor responsable</label><br>
                       <select name="professor" id="professor" class="form-select">
@@ -150,9 +150,18 @@
 
                     <div class="col">
                         <label for="alumne" class="form-label h5 ">Alumne participant</label><br>
-                        <textarea class="form-control" rows="4"  type="text" name="alumne" id="alumne"></textarea>
+                        <select name="alumne" id="alumne" class="form-select">
+                          <?php foreach($alumne as $alumn): ?>
+                              <option value="<?=$alumn['correu_alumne'] ?>"><?= $alumn['correu_alumne'] ?></option>
+                          <?php endforeach; ?>
+                      </select>
                     </div>  
                 </div>
+
+
+                  
+                <button type="submit" class="btn btn-primary px-3">Crear Intervenció</button>
+
               </div>
             </form>
             

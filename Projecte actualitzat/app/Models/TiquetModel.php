@@ -99,6 +99,6 @@ class TiquetModel extends Model
         return $this->update($id_ticket, $nou_ticket);
     }
 
-
+    
 
 }

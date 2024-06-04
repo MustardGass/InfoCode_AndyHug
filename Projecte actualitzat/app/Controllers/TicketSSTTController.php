@@ -320,7 +320,7 @@ class TicketSSTTController extends BaseController
             //obtindre nom del centre raparador
             //realitzar consulta per trobar el centre reparador amb la id proporcionada
             $centre_reparador = $modelCentre->find($idFK_centre_reparador);                //  $centre_reparador -> conté totes les dades del centre trobat
-            $nom_centre_reparador = $centre_reparador['nom'];  //si se a trobat el centre, extraiem el nom de aquell centre
+            $nom_centre_reparador = $centre_reparador['nom'];  //si s'ha trobat el centre, extraiem el nom de aquell centre
 
 
             if($dispositiu_exists){
@@ -338,6 +338,8 @@ class TicketSSTTController extends BaseController
 
         return view("pages/afegir", $data);
     }
+
+    
 
 
     

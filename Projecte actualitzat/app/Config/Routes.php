@@ -45,5 +45,7 @@ $routes->get('/pagina/TicketAlumnes', 'TicketAlumnesController::vista_layout');
 $routes->get('/pagina/alumnes', 'UsuarisController:: alumnes');
 
 $routes->get('/pagina/afegirIntervencio/(:segment)', 'TicketProfessorsController::afegirIntervencio/$1');
+$routes->post('/pagina/afegirIntervencio/(:segment)', 'TicketProfessorsController::inserirIntervencio/$1');
+
 
 
