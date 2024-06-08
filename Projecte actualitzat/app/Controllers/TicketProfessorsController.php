@@ -8,6 +8,7 @@ use App\Models\ProfessorModel;
 use App\Models\TipusDispositiuModel;
 use App\Models\TiquetModel;
 use App\Models\IntervencioModel;
+use Faker\Factory;
 use SIENSIS\KpaCrud\Libraries\KpaCrud;
 
 class TicketProfessorsController extends BaseController

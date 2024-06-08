@@ -130,10 +130,6 @@ class Taules2 extends Migration
             'data_intervencio' => [
                 'type' => 'DATE'
             ],
-            'idFK_tipus_intervencio' => [
-                'type'  => 'INT',
-                'constraint'    => 4
-            ],
             'idFK_tiquet' => [
                 'type'  => 'BINARY',
                 'constraint' => 16
@@ -148,7 +144,6 @@ class Taules2 extends Migration
             ],
         ]);
         $this->forge->addKey("id_intervencio", true);
-        $this->forge->addForeignKey("idFK_tipus_intervencio", "tipus_intervencio", "id_tipus_intervencio");
         $this->forge->addForeignKey("idFK_tiquet", "tiquet", "id_tiquet");
         $this->forge->addForeignKey("idFK_alumne", "alumne", "correu_alumne");
         $this->forge->addForeignKey("idFK_professor", "professor", "id_xtec");

@@ -12,7 +12,7 @@ class IntervencioModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_intervencio', 'descripcio', 'estudi_alumne', 'curs_alumne', 'data_intervencio', 'idFK_tipus_intervencio', 'idFK_tiquet', 'idFK_alumne', 'idFK_professor'];
+    protected $allowedFields    = ['id_intervencio', 'descripcio', 'estudi_alumne', 'curs_alumne', 'data_intervencio', 'idFK_tiquet', 'idFK_alumne', 'idFK_professor'];
 
     protected bool $allowEmptyInserts = false;
 
@@ -72,7 +72,7 @@ class IntervencioModel extends Model
             'id_intervencio' => $id_intervencio,
             'descripcio' => $descripcion_avaria,
             'data_intervencio' => $data_intervencio,
-            'idFk_tiquet' => $id_tiquet,
+            'idFK_tiquet' => $id_tiquet,
             'idFK_alumne' => $alumne_reparador,
             'idFK_professor' => $profe_reparador
         ]);
