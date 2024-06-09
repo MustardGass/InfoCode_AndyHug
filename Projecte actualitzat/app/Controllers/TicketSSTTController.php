@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\IntervencioModel;
 use App\Models\TiquetModel;
 use App\Models\TipusDispositiuModel;
 use App\Models\CentreModel;
@@ -264,6 +265,9 @@ class TicketSSTTController extends BaseController
         $centreEmissor = $modelCentre->find($ticket['idFK_codiCentre_emitent']);
         $centreReparador = $modelCentre->find($ticket['idFK_codiCentre_reparador']);
     
+
+
+
         $data = [
             'id_tiquet' => $ticket['id_tiquet'],
             'codi_equip' => $ticket['codi_equip'],
@@ -274,6 +278,7 @@ class TicketSSTTController extends BaseController
             'centre_reparador' => $centreReparador['nom'] ?? 'Desconegut',
             'idFK_dispositiu' => $tipus_dispositiu, // Cambiado el ID por el nombre del tipo de dispositivo
             'idFK_idProfessor' => $ticket['idFK_idProfessor']
+
         ];
     
         return view('pages/veureTicket', $data);
