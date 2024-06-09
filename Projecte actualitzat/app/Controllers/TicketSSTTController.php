@@ -251,6 +251,7 @@ class TicketSSTTController extends BaseController
         $modelTiquet = new TiquetModel();
         $modelCentre = new CentreModel();
         $modelTipusDispositiu = new TipusDispositiuModel(); // Asegúrate de cargar el modelo correspondiente
+        $intervencio_model = new IntervencioModel();
     
         $ticket = $modelTiquet->find($id_ticket);
     
@@ -264,8 +265,8 @@ class TicketSSTTController extends BaseController
     
         $centreEmissor = $modelCentre->find($ticket['idFK_codiCentre_emitent']);
         $centreReparador = $modelCentre->find($ticket['idFK_codiCentre_reparador']);
-    
 
+        $intervencions = $intervencio_model->where('idFK_tiquet', $id_ticket)->findAll();
 
 
         $data = [
@@ -277,8 +278,8 @@ class TicketSSTTController extends BaseController
             'centre_emitent' => $centreEmissor['nom'] ?? 'Desconegut',
             'centre_reparador' => $centreReparador['nom'] ?? 'Desconegut',
             'idFK_dispositiu' => $tipus_dispositiu, // Cambiado el ID por el nombre del tipo de dispositivo
-            'idFK_idProfessor' => $ticket['idFK_idProfessor']
-
+            'idFK_idProfessor' => $ticket['idFK_idProfessor'],
+            'intervencions' => $intervencions
         ];
     
         return view('pages/veureTicket', $data);
