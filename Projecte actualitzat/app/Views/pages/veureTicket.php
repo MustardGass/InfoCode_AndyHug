@@ -210,22 +210,28 @@
             
 
             </form>
-            
-            <div class="mt-3 mb-5">
-              <h1>Intervencions</h1>
+            <h1>Intervencions</h1>
+
+            <div class="my-5 mx-5">
               <?php foreach ($intervencions as $intervencio): ?>
-                      <ul style="list-style: none">
-                        <li>Id intervenció: <?= esc($intervencio['id_intervencio']); ?></li>
-                        <li>Descripcio: <?= esc($intervencio['descripcio']); ?></li>
-                        <li>Data Intervencio: <?= esc($intervencio['data_intervencio']); ?></li>
-                        <li>Tiquet: <?= esc($intervencio['idFK_tiquet']); ?></li>
-                        <li>Alumne reparador: <?= esc($intervencio['idFK_alumne']); ?></li>
-                        <li>Professor reparador: <?= esc($intervencio['idFK_professor']); ?></li>
-                      </ul>
-                    <?php endforeach; ?>
+                <div class="card mb-3">
+                  <div class="card-header" style="background-color: #70c1fa;">
+                    Id intervenció: <?= esc($intervencio['id_intervencio']); ?>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Descripcio: <?= esc($intervencio['descripcio']); ?></h5>
+                    <p class="card-text">
+                      <strong>Data Intervencio:</strong> <?= esc($intervencio['data_intervencio']); ?><br>
+                      <strong>Tiquet:</strong> <?= esc($intervencio['idFK_tiquet']); ?><br>
+                      <strong>Alumne reparador:</strong> <?= esc($intervencio['idFK_alumne']); ?><br>
+                      <strong>Professor reparador:</strong> <?= esc($intervencio['idFK_professor']); ?>
+                    </p>
+                  </div>
+                </div>
+              <?php endforeach; ?>
             </div>
 
-            <!-- AQUI VA EL LLISTAT DE LES INTERVENCIONS -->
+
 
 
           </div>
